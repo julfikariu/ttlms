@@ -1,17 +1,30 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    You're logged in!
+@extends('layouts.master')
+
+
+@section('content')
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="rounded bg-light p-5">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="h2 text-info">Total Student</div>
+                    <div class="h1">02</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="rounded bg-light p-5">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="h2 text-primary">Total Course</div>
+                    <div class="h1">02</div>
                 </div>
             </div>
         </div>
     </div>
-</x-app-layout>
+
+@endsection

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +22,8 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/add-student', [StudentController::class,'create'])->middleware(['auth'])->name('add-student');
+Route::get('/add-course', [CourseController::class,'create'])->middleware(['auth'])->name('add-course');
 
 require __DIR__.'/auth.php';
