@@ -86,7 +86,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->is('students')?'active':'' }}" aria-current="page" href="#">
+                        <a class="nav-link {{ request()->is('students')?'active':'' }}" aria-current="page" href="{{ route('student-list') }}">
                             <i class="fa fa-list-ul"></i>&nbsp;
                             Student List
                         </a>
