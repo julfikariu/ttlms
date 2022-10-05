@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d34abc3ae191d41fcbe2c2e9e17394b8",
+    "content-hash": "9adec72126c62be3f5df5b74cd250d95",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1667,16 +1667,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.1.9",
+            "version": "1.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "094defdb4a7001845300334e7c1ee2335925ef99"
+                "reference": "3239285c825c152bcc315fe0e87d6b55f5972ed1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/094defdb4a7001845300334e7c1ee2335925ef99",
-                "reference": "094defdb4a7001845300334e7c1ee2335925ef99",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/3239285c825c152bcc315fe0e87d6b55f5972ed1",
+                "reference": "3239285c825c152bcc315fe0e87d6b55f5972ed1",
                 "shasum": ""
             },
             "require": {
@@ -1749,7 +1749,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/1.1.9"
+                "source": "https://github.com/thephpleague/flysystem/tree/1.1.10"
             },
             "funding": [
                 {
@@ -1757,7 +1757,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2021-12-09T09:40:50+00:00"
+            "time": "2022-10-04T09:16:37+00:00"
         },
         {
             "name": "league/mime-type-detection",
@@ -3315,6 +3315,65 @@
                 "source": "https://github.com/sabberworm/PHP-CSS-Parser/tree/8.4.0"
             },
             "time": "2021-12-11T13:40:54+00:00"
+        },
+        {
+            "name": "srmklive/paypal",
+            "version": "1.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/srmklive/laravel-paypal.git",
+                "reference": "188bb21f06f58aa3ad3dd6a25e91a1fc34bff68c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/srmklive/laravel-paypal/zipball/188bb21f06f58aa3ad3dd6a25e91a1fc34bff68c",
+                "reference": "188bb21f06f58aa3ad3dd6a25e91a1fc34bff68c",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~6.0|~7.0",
+                "illuminate/support": "~5.1|~5.2|~5.3|~5.4|~5.5|~5.6|~5.7|~5.8|~6.0|~7.0|~8.0|~9.0",
+                "nesbot/carbon": "~1.0|~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Srmklive\\PayPal\\Providers\\PayPalServiceProvider"
+                    ],
+                    "aliases": {
+                        "PayPal": "Srmklive\\PayPal\\Facades\\PayPal"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Srmklive\\PayPal\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Raza Mehdi",
+                    "email": "srmk@outlook.com"
+                }
+            ],
+            "description": "Laravel plugin For Processing Payments Through Paypal Express Checkout. Can Be Used Independently With Other Applications.",
+            "keywords": [
+                "http",
+                "laravel paypal",
+                "paypal",
+                "rest",
+                "web service"
+            ],
+            "support": {
+                "issues": "https://github.com/srmklive/laravel-paypal/issues",
+                "source": "https://github.com/srmklive/laravel-paypal/tree/1.10.0"
+            },
+            "time": "2022-03-12T11:36:35+00:00"
         },
         {
             "name": "stripe/stripe-php",
@@ -6524,16 +6583,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.16.1",
+            "version": "v1.16.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "cd7b9b6817c871e8b85d4f42e714303ee22676da"
+                "reference": "7d1ed5f856ec8b9708712e3fc0708fcabe114659"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/cd7b9b6817c871e8b85d4f42e714303ee22676da",
-                "reference": "cd7b9b6817c871e8b85d4f42e714303ee22676da",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/7d1ed5f856ec8b9708712e3fc0708fcabe114659",
+                "reference": "7d1ed5f856ec8b9708712e3fc0708fcabe114659",
                 "shasum": ""
             },
             "require": {
@@ -6580,7 +6639,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2022-09-26T13:53:59+00:00"
+            "time": "2022-09-28T13:13:22+00:00"
         },
         {
             "name": "mockery/mockery",

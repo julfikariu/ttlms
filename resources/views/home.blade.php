@@ -89,6 +89,7 @@
                             <h5 class="card-title my-3">{{ isset($course->name)?$course->name:'N/A' }}</h5>
                             <h5 class="my-4">Price: ${{ round($course->price) }}</h5>
                             <a href="{{ route('buy-course', $course->id) }}" class="btn btn-primary mb-2">Buy Now</a>
+                            <a href="{{ route('make.payment',$course->id) }}" class="btn btn-info mb-2">Buy Now With PayPal</a>
                         </div>
                     </div>
                 </div>

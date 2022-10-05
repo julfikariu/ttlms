@@ -3,6 +3,7 @@
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PayPalPaymentController;
 use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +46,13 @@ Route::group(['middleware'=>['auth']],function (){
     Route::get('/buy-course/{id}', [StripePaymentController::class,'index'])->name('buy-course');
     Route::post('/confirm-course', [StripePaymentController::class,'confirmPayment'])->name('payment-store');
 
+    /*Route::get('/paywithpaypal', [PayPalPaymentController::class,'payWithPaypal'])->name('paywithpaypal');
+    Route::post('/paypal', [PayPalPaymentController::class,'postPaymentWithpaypal'])->name('paypal');
+    Route::get('/paypal', [PayPalPaymentController::class,'getPaymentStatus'])->name('paypal-ststus');*/
+
+    Route::get('handle-payment/{id}', [PayPalPaymentController::class,'handlePayment'])->name('make.payment');
+    Route::get('cancel-payment', [PayPalPaymentController::class,'paymentCancel'])->name('cancel.payment');
+    Route::get('payment-success', [PayPalPaymentController::class,'paymentSuccess'])->name('success.payment');
 
 });
 
