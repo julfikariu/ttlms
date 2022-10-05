@@ -49,7 +49,7 @@
 <body>
 
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Technical Task</a>
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#"><strong>TTLMS</strong></a>
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -67,48 +67,8 @@
 
 <div class="container-fluid">
     <div class="row">
-        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-            <div class="position-sticky pt-3">
-                <ul class="nav flex-column">
 
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('dashboard')?'active':'' }}" href="{{ route('dashboard') }}">
-                            <i class="fa fa-tachometer"></i>&nbsp;
-                            Dashboard
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('add-student')?'active':'' }}" href="{{ route('add-student') }}">
-                            <i class="fa fa-user-o"></i>&nbsp;
-                            Add Student
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('students')?'active':'' }}" aria-current="page" href="{{ route('student-list') }}">
-                            <i class="fa fa-list-ul"></i>&nbsp;
-                            Student List
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->is('add-course')?'active':'' }}" href="{{ route('add-course') }}">
-                            <i class="fa fa-file-text-o"></i>&nbsp;
-                            Create courses
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">
-                            <i class="fa fa-th-list"></i>&nbsp;
-                            Course List
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-        </nav>
+        @include('partial.side-menu')
 
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             @yield('content')

@@ -11,8 +11,8 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="rounded bg-light p-5">
                 <div class="d-flex justify-content-between align-items-center">
-                    <div class="h2 text-info">Total Student</div>
-                    <div class="h1">02</div>
+                    <div class="h2 text-primary">Total Student</div>
+                    <div class="h1 text-info">{{ $total_student }}</div>
                 </div>
             </div>
         </div>
@@ -21,7 +21,7 @@
             <div class="rounded bg-light p-5">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="h2 text-primary">Total Course</div>
-                    <div class="h1">02</div>
+                    <div class="h1 text-info">{{ $total_course }}</div>
                 </div>
             </div>
         </div>

@@ -28,6 +28,7 @@
                                     <th scope="col">first_name</th>
                                     <th scope="col">Last Name</th>
                                     <th scope="col">Registration No</th>
+                                    <th scope="col">Email</th>
                                     <th scope="col">Action</th>
                                 </tr>
                                 </thead>
@@ -37,9 +38,10 @@
                                     <th scope="row">{{ $loop->index+1 }}</th>
                                     <td>{{ $student->first_name }}</td>
                                     <td>{{ $student->last_name }}</td>
-                                    <td>{{ $student->registration_no }}</td>
+                                    <td>{{ $student->regi_no }}</td>
+                                    <td>{{ $student->email }}</td>
                                     <td>
-                                        <a href="" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
+                                        <a href="{{ route('student-detail',$student->id) }}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
                                     </td>
                                 </tr>
                                @endforeach

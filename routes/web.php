@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
@@ -21,16 +22,23 @@ use Illuminate\Support\Facades\Route;
 });*/
 Route::get('/', [HomeController::class,'index'])->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
 Route::group(['middleware'=>['auth']],function (){
+    Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
+
     Route::get('/students', [StudentController::class,'index'])->name('student-list');
     Route::get('/add-student', [StudentController::class,'create'])->name('add-student');
-    Route::post('/store', [StudentController::class,'store'])->name('student.store');
+    Route::get('/student-detail/{id}', [StudentController::class,'detail'])->name('student-detail');
+    Route::post('/student-store', [StudentController::class,'store'])->name('student.store');
 
+    Route::get('/courses', [CourseController::class,'index'])->name('course-list');
     Route::get('/add-course', [CourseController::class,'create'])->name('add-course');
+    Route::post('/store', [CourseController::class,'store'])->name('course.store');
+
+    Route::get('/add-course-student/{id}', [CourseController::class,'addStudent'])->name('add-course-student-view');
+    Route::post('/add-course-student', [CourseController::class,'addStudentSave'])->name('add-course-student-save');
+
+    Route::get('/course-detail/{id}', [CourseController::class,'detail'])->name('course-detail');
 });
 
 
