@@ -65,17 +65,30 @@
             <div class="row">
                 <div class="col-12">
                     <h3 class="my-4">All Course</h3>
+                    @if(session()->has('success'))
+                        <div class="alert alert-success alert-dismissible fade show mt-5" role="alert">
+                            <strong>{{ session()->get('success') }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+
+                    @if(session()->has('error'))
+                        <div class="alert alert-warning alert-dismissible fade show mt-5" role="alert">
+                            <strong>{{ session()->get('error') }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
                 </div>
             </div>
 
             <div class="row">
                 @forelse($courses as $course)
                 <div class="col-4">
-                    <div class="card" style="width: 100%;">
+                    <div class="card mb-4" style="width: 100%;">
                         <div class="card-body">
                             <h5 class="card-title my-3">{{ isset($course->name)?$course->name:'N/A' }}</h5>
                             <h5 class="my-4">Price: ${{ round($course->price) }}</h5>
-                            <a href="#" class="btn btn-primary mb-2">Buy Now</a>
+                            <a href="{{ route('buy-course', $course->id) }}" class="btn btn-primary mb-2">Buy Now</a>
                         </div>
                     </div>
                 </div>

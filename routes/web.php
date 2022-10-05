@@ -3,6 +3,7 @@
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,12 @@ Route::group(['middleware'=>['auth']],function (){
     Route::post('/add-course-student', [CourseController::class,'addStudentSave'])->name('add-course-student-save');
 
     Route::get('/course-detail/{id}', [CourseController::class,'detail'])->name('course-detail');
+
+    // For payment
+    Route::get('/buy-course/{id}', [StripePaymentController::class,'index'])->name('buy-course');
+    Route::post('/confirm-course', [StripePaymentController::class,'confirmPayment'])->name('payment-store');
+
+
 });
 
 
