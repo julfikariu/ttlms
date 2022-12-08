@@ -28,11 +28,10 @@ class PayPalPaymentController extends Controller
         $data['return_url'] = route('success.payment');
         $data['cancel_url'] = route('cancel.payment');
         $data['total'] = $data['items'][0]['price'];
+
         $paypalModule = new ExpressCheckout();
         $response = $paypalModule->setExpressCheckout($data);
         $response = $paypalModule->setExpressCheckout($data, true);
-
-
 
         return redirect($response['paypal_link']);
     }
@@ -46,9 +45,19 @@ class PayPalPaymentController extends Controller
 
     public function paymentSuccess(Request $request)
     {
+
+        $provider = new ExpressCheckout;
+        $response = $provider->getExpressCheckoutDetails($request->token);
+
+        if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
+//            dd('Your payment was successfully. You can create success page here.');
             Session::flash('success', "Payment was successful.");
 
             return redirect()->route('home');
+        }
+
+        dd('Something is wrong.');
+
 
     }
 }
