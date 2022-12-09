@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use Srmklive\PayPal\Services\ExpressCheckout;
+use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 
 class PayPalPaymentController extends Controller
@@ -22,18 +23,43 @@ class PayPalPaymentController extends Controller
                 'qty' => 1
             ]
         ];
-//        return redirect()->route('success.payment');
-        $data['invoice_id'] = uniqid();
-        $data['invoice_description'] = "Order #{$data['invoice_id']} Invoice";
-        $data['return_url'] = route('success.payment');
-        $data['cancel_url'] = route('cancel.payment');
-        $data['total'] = $data['items'][0]['price'];
 
-        $paypalModule = new ExpressCheckout();
-        $response = $paypalModule->setExpressCheckout($data);
-        $response = $paypalModule->setExpressCheckout($data, true);
+        $provider = new PayPalClient([]);
+        $token = $provider->getAccessToken();
+        $provider->setAccessToken($token);
 
-        return redirect($response['paypal_link']);
+        $order = $provider->createOrder([
+                    "intent" => "CAPTURE",
+                "purchase_units" => [
+                    [
+                        "amount"=>[
+                            "currency_code" => "USD",
+                            "value" => $course->price
+                        ]
+                    ]
+                ],
+            "application_context"=>[
+                "cancel_url" => route('cancel.payment'),
+                "return_url" =>route('success.payment')
+            ]
+        ]);
+
+
+        if($order['status']=='CREATED'){
+            $course_order = new Order();
+            $course_order->user_id = auth()->user()->id;
+            $course_order->course_id = $course->id;
+            $course_order->payment_id = $order['id'];
+            $course_order->amount = $course->price;
+            $course_order->status = 'Pending';
+
+            $course_order->save();
+
+            return redirect($order['links'][1]['href']);
+        }
+
+        Session::flash('error', "Sorry! There may be an error. PayPal payment is failed.");
+        return redirect()->route('home');
     }
 
     public function paymentCancel()
@@ -46,18 +72,25 @@ class PayPalPaymentController extends Controller
     public function paymentSuccess(Request $request)
     {
 
-        $provider = new ExpressCheckout;
-        $response = $provider->getExpressCheckoutDetails($request->token);
+        $provider = new PayPalClient;
+        $provider->setApiCredentials(config('paypal'));
+        $provider->getAccessToken();
 
-        if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
-//            dd('Your payment was successfully. You can create success page here.');
-            Session::flash('success', "Payment was successful.");
+        $response = $provider->capturePaymentOrder($request['token']);
 
+
+        if(isset($response['status']) && $response['status']=='COMPLETED'){
+
+            $course_order = Order::where('payment_id',$response['id'])->first();
+            $course_order->status = 'Paid';
+            $course_order->save();
+
+            Session::flash('success', "Course purchase successfully.");
             return redirect()->route('home');
         }
 
-        dd('Something is wrong.');
-
+        Session::flash('error', "Sorry! There may be an error. PayPal payment is failed......");
+        return redirect()->route('home');
 
     }
 }
