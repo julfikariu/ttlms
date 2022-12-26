@@ -24,6 +24,9 @@ use Illuminate\Support\Facades\Route;
 });*/
 Route::get('/', [HomeController::class,'index'])->name('home');
 
+Route::get('/test-card', [HomeController::class,'testCard'])->name('test-card');
+Route::post('/test-card/save', [HomeController::class,'testCardSave'])->name('test-card-save');
+
 
 Route::group(['middleware'=>['auth']],function (){
     Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
